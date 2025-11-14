@@ -1,0 +1,21 @@
+[Unit]
+Description=Raspberry Pi Guard - Safe Shutdown Monitor for mayday
+After=multi-user.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/python3 /home/pramanik/mayday.py
+
+Restart=always
+RestartSec=2
+
+StandardOutput=journal
+StandardError=journal
+StandardOutput=append:/var/log/mayday.log
+StandardError=append:/var/log/mayday.log
+
+Nice=-5
+
+[Install]
+WantedBy=multi-user.target
